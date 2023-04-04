@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* subtract the header and footer heights */
+.my-content-height {
+    min-height: calc(100vh - theme("spacing.16") - theme("spacing.24"));
+}
+
+/* dropdown navbar height and active classes */
+/* height of navbar is screen size minus header height */
+.navbarHeight {
+    min-height: calc(100vh - theme("spacing.14"));
+}
+.navbarActive {
+    @apply block navbarHeight visible bg-slate-100 dark:bg-slate-800;
+}
+
+/* TODO check the breakpoints for tailwind css and set the max/min heights */
+/* site wide active link colors */
+/* home route and active route will hightlight */
+a.router-link-active {
+    @apply font-bold text-green-400;
+}
