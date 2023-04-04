@@ -27,6 +27,8 @@ export default defineNuxtConfig({
     },
     modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@nuxtjs/supabase"],
     runtimeConfig: {
-        SUPABASE_STORAGE_BASE_URL: process.env.SUPABASE_STORAGE_BASE_URL,
+        public: {
+            SUPABASE_STORAGE_BASE_URL: process.env.SUPABASE_STORAGE_BASE_URL,
+        },
     },
 });
