@@ -8,17 +8,23 @@
 import { RealtimeChannel } from "@supabase/supabase-js";
 const client = useSupabaseClient();
 let realtimeChannelNotifications = RealtimeChannel;
+const userId = 1;
 
 onMounted(async () => {
     // subscribe to notifications
     realtimeChannelNotifications = client
-        .channel("public:Notification")
+        .channel("public:notifications")
         .on(
             "postgres_changes",
-            { event: "*", schema: "public", table: "Notification" },
+            {
+                event: "INSERT",
+                schema: "public",
+                table: "notifications",
+                filter: "user_id=eq." + userId,
+            },
             () => refreshNotifications()
-        );
-    realtimeChannelNotifications.subscribe();
+        )
+        .subscribe();
 });
 
 function refreshNotifications() {

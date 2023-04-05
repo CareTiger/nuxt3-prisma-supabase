@@ -45,4 +45,19 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 -   nuxt/image - https://v1.image.nuxtjs.org/
 -   supabase/prisma - https://supabase.com/docs/guides/integrations/prisma
--
+-   realtime inspector - https://realtime.supabase.com/inspector
+
+## Enabling relatime on table
+
+To enable realtime for database tables, you can use the following code snippet:
+
+begin;
+-- remove the realtime publication
+drop publication if exists supabase_realtime;
+-- re-create the publication but don't enable it for any tables
+create publication supabase_realtime;
+commit;
+-- add a table to the publication
+alter publication supabase_realtime add table products;
+-- add other tables to the publication
+alter publication supabase_realtime add table posts;
