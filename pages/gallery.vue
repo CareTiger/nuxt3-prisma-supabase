@@ -1,8 +1,9 @@
 <template>
     <div>
-        <h1 class="text-2xl text-center">Avatar</h1>
-        <div class="mx-auto">
-            <h2 class="text-lg">Upload your image</h2>
+        <div
+            class="flex flex-col mx-auto border border-slate-300 p-6 rounded-xl"
+        >
+            <h2 class="text-lg text-center">Upload your image</h2>
             <img
                 :src="imageURL"
                 width="200"
@@ -26,16 +27,26 @@
                 >
             </div>
         </div>
-        <div>
-            <h2 class="text-lg">Your images</h2>
-            <div v-for="image in imageGallery" :key="image">
-                <img
-                    :src="`${runtimeConfig.SUPABASE_STORAGE_BASE_URL}/sampyl/users/${user.id}/${image.name}`"
-                    width="200"
-                    height="200"
-                    alt="your image"
-                />
-            </div>
+        <div class="mt-8 border border-slate-300 p-6 rounded-xl">
+            <p v-if="imageGallery.length === 0" class="">
+                No images in your gallery.
+            </p>
+            <ul
+                v-else
+                class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3"
+            >
+                <li
+                    class="col-span-1"
+                    v-for="image in imageGallery"
+                    :key="image.name"
+                >
+                    <img
+                        class="w-full h-96 object-cover rounded-2xl"
+                        :src="`${runtimeConfig.SUPABASE_STORAGE_BASE_URL}/sampyl/users/${user.id}/${image.name}`"
+                        alt="your image"
+                    />
+                </li>
+            </ul>
         </div>
     </div>
 </template>

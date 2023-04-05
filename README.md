@@ -40,3 +40,9 @@ npm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Project notes
+
+-   nuxt/image - https://v1.image.nuxtjs.org/
+-   supabase/prisma - https://supabase.com/docs/guides/integrations/prisma
+-

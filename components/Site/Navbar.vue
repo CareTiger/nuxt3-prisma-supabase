@@ -26,7 +26,7 @@
                     <NuxtLink to="/dashboard">Dashboard</NuxtLink>
                 </li>
                 <li v-if="user">
-                    <NuxtLink to="/avatar">Avatar</NuxtLink>
+                    <NuxtLink to="/gallery">Gallery</NuxtLink>
                 </li>
                 <li v-if="user">
                     <NuxtLink to="/notifications">Notifications</NuxtLink>
