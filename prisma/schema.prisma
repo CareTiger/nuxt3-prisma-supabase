@@ -12,7 +12,7 @@ model User {
     id             Int     @id @default(autoincrement())
     authId         String  @unique
     email          String  @unique
-    username       String  @unique
+    username       String?  @unique
     provider       String?
     avatar_url     String?
     avatar_key     String?

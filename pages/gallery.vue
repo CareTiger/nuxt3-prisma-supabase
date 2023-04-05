@@ -78,7 +78,7 @@ async function submitForm() {
     try {
         const { data, error } = await client.storage
             .from("sampyl/users/" + user.value.id)
-            .upload(avatarFile.value.name + "-" + timeStamp, avatarFile.value, {
+            .upload(avatarFile.value.name, avatarFile.value, {
                 cacheControl: "3600",
                 upsert: false,
             });

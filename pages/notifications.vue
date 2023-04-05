@@ -18,14 +18,12 @@ let realtimeChannel = RealtimeChannel;
 // );
 async function refreshUsers() {
     console.log("Fetching users");
-    const { data } = await client.from("User").select("username");
-    console.log(data);
-    return data;
+    // const { data } = await client.from("User").select("username");
+    // console.log(data);
+    // return data;
 }
 // Once page is mounted, listen to changes on the `user` table and refresh user when receiving event
 onMounted(async () => {
-    const { data, error } = await client.from("countries").select("*");
-    console.log(data);
     // Real time listener for new workouts
     // realtimeChannel = client
     //     .channel("public:User")
@@ -35,10 +33,10 @@ onMounted(async () => {
     //         () => refreshUsers()
     //     );
     // realtimeChannel.subscribe();
-    // console.log(realtimeChannel);
+    // console.log(client.getChannels());
 });
 // Don't forget to unsubscribe when user left the page
-onUnmounted(() => {
-    client.removeChannel(realtimeChannel);
-});
+// onUnmounted(() => {
+//     client.removeChannel(realtimeChannel);
+// });
 </script>
