@@ -2,18 +2,20 @@ export const useGetUser = () => {
     console.log("useGetUser");
 };
 
-export const useRefreshNotifications = () => {
+export const useRefreshNotifications = async () => {
     const user = useSupabaseUser();
-    // console.log("useRefreshNotifications", user.value.id);
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await useFetch("/api/v1/user/getAllNotifications", {
-                method: "GET",
-                query: {
-                    user_id: 1,
-                },
-            });
-            resolve(data);
+            const { data } = await useFetch(
+                "/api/v1/user/getAllNotifications",
+                {
+                    method: "GET",
+                    query: {
+                        user_id: 1,
+                    },
+                }
+            );
+            resolve(toRaw(data.value));
         } catch (error) {
             reject(error);
         }

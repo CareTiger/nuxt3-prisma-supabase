@@ -10,9 +10,6 @@ const user = useSupabaseUser();
 const client = useSupabaseClient();
 let realtimeChannelNotifications = RealtimeChannel;
 
-const notifications = await useRefreshNotifications();
-console.log("notifications", notifications.value);
-
 onMounted(async () => {
     // subscribe to notifications
     realtimeChannelNotifications = client
@@ -27,8 +24,6 @@ onMounted(async () => {
             () => useRefreshNotifications()
         )
         .subscribe();
-
-    console.log(client.getChannels());
 });
 
 onUnmounted(() => {
