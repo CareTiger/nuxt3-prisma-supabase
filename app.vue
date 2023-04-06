@@ -6,9 +6,12 @@
 
 <script setup>
 import { RealtimeChannel } from "@supabase/supabase-js";
+const user = useSupabaseUser();
 const client = useSupabaseClient();
 let realtimeChannelNotifications = RealtimeChannel;
-const userId = 1;
+
+const notifications = await useRefreshNotifications();
+console.log("notifications", notifications.value);
 
 onMounted(async () => {
     // subscribe to notifications
@@ -20,18 +23,23 @@ onMounted(async () => {
                 event: "INSERT",
                 schema: "public",
                 table: "notifications",
-                filter: "user_id=eq." + userId,
             },
-            () => refreshNotifications()
+            () => useRefreshNotifications()
         )
         .subscribe();
-});
 
-function refreshNotifications() {
-    console.log("Fetching notifications");
-}
+    console.log(client.getChannels());
+});
 
 onUnmounted(() => {
     client.removeChannel(realtimeChannelNotifications);
+});
+
+watchEffect(() => {
+    if (user.value) {
+        useGetUser();
+    } else {
+        console.log("No user");
+    }
 });
 </script>
