@@ -4,12 +4,27 @@ import { createUser } from "~/server/db/user";
 
 export default defineEventHandler(async (event) => {
 	const payload = await getQuery(event);
-	const user = await getUser(payload.auth_id);
-	if (user) {
-		return user;
+	const user = JSON.parse(payload.user);
+	console.log("user", user);
+
+	// check if user exists in app db and return user else create new user
+	const userExists = await getUser(user.id);
+	if (userExists) {
+		return userExists;
 	} else {
-		return await createUser(payload).catch((error) => {
+		const newUser = {
+			auth_id: user.id,
+			email: user.email,
+			full_name: user?.user_metadata?.full_name,
+			avatar_url: user?.user_metadata?.avatar_url,
+			username: user?.user_metadata?.user_name,
+			provider: user?.provider,
+			created_at: new Date(),
+			updated_at: new Date(),
+		};
+		return await createUser(newUser).catch((error) => {
 			sendError(error);
 		});
 	}
+	// return;
 });

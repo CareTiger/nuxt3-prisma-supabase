@@ -14,11 +14,8 @@ model user {
     auth_id        String          @unique
     email          String          @unique
     username       String?         @unique
-    provider       String?
     avatar_url     String?
-    avatar_key     String?
     background_url String?
-    background_key String?
     about          String?
     full_name      String?
     private        Boolean         @default(false)
