@@ -96,6 +96,6 @@ const toggleModal = () => {
 
 function logout() {
 	client.auth.signOut();
-	window.location.reload();
+	navigateTo("/");
 }
 </script>
