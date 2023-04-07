@@ -5,7 +5,6 @@ import { createUser } from "~/server/db/user";
 export default defineEventHandler(async (event) => {
 	const payload = await getQuery(event);
 	const user = JSON.parse(payload.user);
-	console.log("user", user);
 
 	// check if user exists in app db and return user else create new user
 	const userExists = await getUser(user.id);
