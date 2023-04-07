@@ -1,5 +1,7 @@
 <template>
-	<div>Admin Page</div>
+	<div>
+		<h1 class="text-center text-4xl">Admin</h1>
+	</div>
 </template>
 
 <script setup>

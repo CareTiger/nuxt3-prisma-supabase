@@ -21,7 +21,7 @@ export const useGetUser = () => {
 
 export const useRefreshNotifications = async () => {
 	console.log("useRefreshNotifications");
-	const user = useSupabaseUser();
+	const userStore = useUserStore();
 	return new Promise(async (resolve, reject) => {
 		try {
 			const { data } = await useFetch(
@@ -29,10 +29,11 @@ export const useRefreshNotifications = async () => {
 				{
 					method: "GET",
 					query: {
-						auth_id: user.value.id,
+						auth_id: userStore.profile.id,
 					},
 				}
 			);
+			userStore.setNotifications(toRaw(data.value));
 			resolve(toRaw(data.value));
 		} catch (error) {
 			reject(error);
