@@ -4,36 +4,36 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
-    directUrl   = env("DIRECT_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 model user {
-    id             Int     @id @default(autoincrement())
-    authId         String  @unique
-    email          String  @unique
-    username       String?  @unique
+    id             Int             @id @default(autoincrement())
+    auth_id        String          @unique
+    email          String          @unique
+    username       String?         @unique
     provider       String?
     avatar_url     String?
     avatar_key     String?
     background_url String?
     background_key String?
     about          String?
-    fullName       String?
-    private        Boolean @default(false)
+    full_name      String?
+    private        Boolean         @default(false)
     notifications  notifications[]
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    created_at     DateTime        @default(now())
+    updated_at     DateTime        @updatedAt
 }
 
 model notifications {
-    id        Int      @id @default(autoincrement())
-    type      String
-    message   String
-    read      Boolean  @default(false)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    user      user     @relation(fields: [user_id], references: [id])
-    user_id    Int
+    id         Int      @id @default(autoincrement())
+    type       String
+    message    String
+    read       Boolean  @default(false)
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+    user       user     @relation(fields: [auth_id], references: [auth_id])
+    auth_id    String
 }

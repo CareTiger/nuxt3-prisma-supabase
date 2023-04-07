@@ -11,6 +11,11 @@ const client = useSupabaseClient();
 let realtimeChannelNotifications = RealtimeChannel;
 
 onMounted(async () => {
+    // use 10 second polling to check changes
+    // setInterval(() => {
+    //     usePolling();
+    // }, 10000);
+
     // subscribe to notifications
     realtimeChannelNotifications = client
         .channel("public:notifications")
