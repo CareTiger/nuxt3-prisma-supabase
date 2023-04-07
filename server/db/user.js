@@ -25,3 +25,14 @@ export const getNotifications = async (auth_id) => {
 		take: 10,
 	});
 };
+
+export const getUserRole = async (auth_id) => {
+	return await prisma.user.findUnique({
+		where: {
+			auth_id,
+		},
+		select: {
+			role: true,
+		},
+	});
+};

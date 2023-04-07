@@ -1,5 +1,8 @@
+import { useUserStore } from "~/store/user";
+
 export const useGetUser = () => {
 	const user = useSupabaseUser();
+	const userStore = useUserStore();
 	return new Promise(async (resolve, reject) => {
 		try {
 			const { data } = await useFetch("/api/v1/user/getUser", {
@@ -8,6 +11,7 @@ export const useGetUser = () => {
 					user: toRaw(user.value),
 				},
 			});
+			userStore.setProfile(toRaw(data.value));
 			resolve(toRaw(data.value));
 		} catch (error) {
 			reject(error);
@@ -25,10 +29,27 @@ export const useRefreshNotifications = async () => {
 				{
 					method: "GET",
 					query: {
-						user_id: 1,
+						auth_id: user.value.id,
 					},
 				}
 			);
+			resolve(toRaw(data.value));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+export const useGetUserRole = () => {
+	const user = useSupabaseUser();
+	return new Promise(async (resolve, reject) => {
+		try {
+			const { data } = await useFetch("/api/v1/user/getRole", {
+				method: "GET",
+				query: {
+					auth_id: user.value.id,
+				},
+			});
 			resolve(toRaw(data.value));
 		} catch (error) {
 			reject(error);

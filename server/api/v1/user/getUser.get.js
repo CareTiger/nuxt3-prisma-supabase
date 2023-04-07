@@ -1,6 +1,7 @@
 import { sendError } from "h3";
 import { getUser } from "~/server/db/user";
 import { createUser } from "~/server/db/user";
+import { userTransformer } from "~/server/transformer/user";
 
 export default defineEventHandler(async (event) => {
 	const payload = await getQuery(event);
@@ -9,7 +10,7 @@ export default defineEventHandler(async (event) => {
 	// check if user exists in app db and return user else create new user
 	const userExists = await getUser(user.id);
 	if (userExists) {
-		return userExists;
+		return userTransformer(userExists);
 	} else {
 		const newUser = {
 			auth_id: user.id,
