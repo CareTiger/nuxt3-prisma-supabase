@@ -34,9 +34,6 @@
 				<li v-if="user">
 					<NuxtLink to="/admin">Admin</NuxtLink>
 				</li>
-				<li v-if="user">
-					<NuxtLink to="" @click="logout">Logout</NuxtLink>
-				</li>
 			</ul>
 		</div>
 		<!-- Mobile Navbar -->
@@ -71,6 +68,11 @@
 			</div>
 		</SiteBaseModal>
 		<div class="flex items-center space-x-2">
+			<ul>
+				<li v-if="user">
+					<NuxtLink to="" @click="logout">Logout</NuxtLink>
+				</li>
+			</ul>
 			<div
 				class="md:hidden flex flex-row items-center border border-slate-100 dark:border-slate-600 rounded-full shadow py-2 px-6 cursor-pointer"
 				@click="toggleModal"
@@ -94,6 +96,6 @@ const toggleModal = () => {
 
 function logout() {
 	client.auth.signOut();
-	navigateTo("/");
+	window.location.reload();
 }
 </script>
