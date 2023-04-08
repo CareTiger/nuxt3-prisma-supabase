@@ -29,7 +29,17 @@
 					<NuxtLink to="/gallery">Gallery</NuxtLink>
 				</li>
 				<li v-if="user">
-					<NuxtLink to="/notifications">Notifications</NuxtLink>
+					<NuxtLink to="/notifications"
+						><span>Notifications </span>
+						<span></span>
+						<span
+							v-if="userStore.getNumberOfUnreadNotifications > 0"
+							>({{
+								userStore.getNumberOfUnreadNotifications
+							}}
+							unread)</span
+						>
+					</NuxtLink>
 				</li>
 				<li v-if="user">
 					<NuxtLink to="/admin">Admin</NuxtLink>
@@ -87,9 +97,11 @@
 </template>
 
 <script setup>
+import { useUserStore } from "~/store/user";
 const modalActive = ref(false);
 const user = useSupabaseUser();
 const client = useSupabaseAuthClient();
+const userStore = useUserStore();
 const toggleModal = () => {
 	modalActive.value = !modalActive.value;
 };

@@ -14,5 +14,11 @@ export const useUserStore = defineStore({
 			this.notifications = notifications;
 		},
 	},
-	getters: {},
+	getters: {
+		getNumberOfUnreadNotifications() {
+			return this.notifications.filter(
+				(notification) => !notification.read
+			).length;
+		},
+	},
 });
