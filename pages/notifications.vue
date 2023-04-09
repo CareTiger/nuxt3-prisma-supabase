@@ -25,4 +25,13 @@ const userStore = useUserStore();
 definePageMeta({
 	middleware: ["auth"],
 });
+
+onUnmounted(async () => {
+	// const client = useSupabaseClient();
+	// const data = await client.rpc("mark_notifications_as_read", {
+	// 	user_id: userStore.profile.id,
+	// });
+	// const data = client.rpc("hello_world", { user_id: userStore.profile.id });
+	// console.log(data);
+});
 </script>
