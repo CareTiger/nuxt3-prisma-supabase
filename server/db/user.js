@@ -5,6 +5,13 @@ export const getUser = async (auth_id) => {
 		where: {
 			auth_id,
 		},
+		include: {
+			notifications: {
+				orderBy: {
+					created_at: "desc",
+				},
+			},
+		},
 	});
 };
 
