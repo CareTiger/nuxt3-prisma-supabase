@@ -99,3 +99,4 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
 -   full text search (https://www.prisma.io/docs/concepts/components/prisma-client/full-text-search)
 -   Create a shadow db (not named "postgres") and access through pgAdmin. Text out all functionality - realtime, RLS, etc.
 -   Reset pwd - is not redirecting to the right page
+-   Log errors in error logging table
