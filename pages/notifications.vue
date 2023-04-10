@@ -23,6 +23,7 @@
 import { useUserStore } from "~/store/user";
 const userStore = useUserStore();
 const client = useSupabaseClient();
+const user = useSupabaseUser();
 
 definePageMeta({
 	middleware: ["auth"],
@@ -40,5 +41,11 @@ onUnmounted(async () => {
 	const data = await client.rpc("mark_notifications_as_read", {
 		user_id: userStore.profile.id,
 	});
+});
+
+watchEffect(() => {
+	if (!user.value) {
+		navigateTo("/auth/login");
+	}
 });
 </script>

@@ -17,7 +17,14 @@
 import { useUserStore } from "~/store/user";
 const userStore = useUserStore();
 const user = useSupabaseUser();
+
 definePageMeta({
 	middleware: ["auth"],
+});
+
+watchEffect(() => {
+	if (!user.value) {
+		navigateTo("/auth/login");
+	}
 });
 </script>

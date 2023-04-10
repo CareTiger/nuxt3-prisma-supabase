@@ -103,4 +103,10 @@ async function getImages() {
 		console.log(error);
 	}
 }
+
+watchEffect(() => {
+	if (!user.value) {
+		navigateTo("/auth/login");
+	}
+});
 </script>
