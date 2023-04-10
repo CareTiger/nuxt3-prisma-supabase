@@ -40,7 +40,7 @@
 ### How to check if your grants are messed up
 
     const client = useSupabaseClient();
-    const todos = await client.from("todos").select("\*");
+    const todos = await client.from("todos").select("*");
     console.log(todos.status);
 
 ## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
