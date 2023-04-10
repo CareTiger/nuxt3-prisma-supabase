@@ -1,2 +1,6 @@
 <template><div>todos</div></template>
-<script setup></script>
+<script setup>
+const client = useSupabaseClient();
+const todos = await client.from("todos").select("*");
+console.log(todos.status);
+</script>

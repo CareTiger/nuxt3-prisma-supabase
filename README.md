@@ -8,6 +8,12 @@
 -   fix messed up grants because of Prisma - https://supabase.com/docs/guides/integrations/prisma#missing-grants
 -   RLS - https://supabase.com/docs/guides/auth/row-level-security#advanced-policies
 
+## Prisma naming convention
+
+-   Use plural for all model names
+-   use lower case for all model names
+-   use user_id instead of auth_id
+
 ## SQL for enabling realtime on table "notifications" (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
     begin;
@@ -30,6 +36,12 @@
     alter default privileges in schema public grant all on tables to postgres, anon, authenticated, service_role;
     alter default privileges in schema public grant all on functions to postgres, anon, authenticated, service_role;
     alter default privileges in schema public grant all on sequences to postgres, anon, authenticated, service_role;
+
+### How to check if your grants are messed up
+
+    const client = useSupabaseClient();
+    const todos = await client.from("todos").select("\*");
+    console.log(todos.status);
 
 ## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
