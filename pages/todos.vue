@@ -24,7 +24,10 @@
 						<span
 							><UIToggle
 								:model-value="todo.completed"
-								@update="completedTodo(todo.id, modelValue)"
+								@update="
+									(modelValue) =>
+										completedTodo(todo.id, modelValue)
+								"
 							></UIToggle
 						></span>
 						<span
@@ -66,7 +69,6 @@ async function addTodo() {
 }
 
 async function completedTodo(id, modelValue) {
-	console.log(id, modelValue);
 	setTimeout(() => {
 		siteStore.isLoading = true;
 	}, 200);
