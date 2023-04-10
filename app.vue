@@ -16,7 +16,9 @@ onMounted(async () => {
 	//     usePolling();
 	// }, 10000);
 
-	// subscribe to notifications
+	if (!user.value) return;
+
+	// subscribe to notifications channel
 	realtimeChannelNotifications = client
 		.channel("public:notifications")
 		.on(
