@@ -86,3 +86,4 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
 -   Create indexes on table using Prisma (https://www.prisma.io/blog/improving-query-performance-using-indexes-2-MyoiJNMFTsfq#:~:text=You%20can%20add%20an%20index,index%20created%20in%20the%20database)
 -   full text search (https://www.prisma.io/docs/concepts/components/prisma-client/full-text-search)
 -   Create a shadow db (not named "postgres") and access through pgAdmin. Text out all functionality - realtime, RLS, etc.
+-   Reset pwd - is not redirecting to the right page
