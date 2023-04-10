@@ -20,7 +20,6 @@ export const useGetUser = () => {
 };
 
 export const useRefreshNotifications = async () => {
-	console.log("useRefreshNotifications");
 	const userStore = useUserStore();
 	return new Promise(async (resolve, reject) => {
 		try {

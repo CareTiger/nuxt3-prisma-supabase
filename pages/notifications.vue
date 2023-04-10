@@ -27,6 +27,13 @@ definePageMeta({
 });
 
 onUnmounted(async () => {
+	// call the RPC function mark_notifications_as_read()
+	// CODE for the RPC function that receives an argument user_id
+	// begin
+	// update public.notifications
+	// set read = true
+	// where auth_id = user_id and read = false;
+	// end
 	const client = useSupabaseClient();
 	const data = await client.rpc("mark_notifications_as_read", {
 		user_id: userStore.profile.id,

@@ -22,9 +22,10 @@ onMounted(async () => {
 		.on(
 			"postgres_changes",
 			{
-				event: "INSERT",
+				event: "*",
 				schema: "public",
 				table: "notifications",
+				filter: "auth_id=eq." + user.value.id,
 			},
 			() => useRefreshNotifications()
 		)
