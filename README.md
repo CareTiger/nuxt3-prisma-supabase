@@ -109,7 +109,8 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
 ## Tutorials & examples
 
 supabase - https://github.com/supabase/supabase/tree/master/examples
-supabase edge-functions - https://github.com/supabase/supabase/tree/master/examples/edge-functions/supabase/functions
+supabase - edge-functions - https://github.com/supabase/supabase/tree/master/examples/edge-functions/supabase/functions
+supabase - database webhooks - https://www.youtube.com/watch?v=dJk2wbdLDpE&t=3s
 
 CodewithGuillaume - edge functions - https://www.youtube.com/watch?v=wJtuF6A8uXk
 CodewithGuillaume - RLS - https://www.youtube.com/watch?v=eplN5oaQ_aA&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=3

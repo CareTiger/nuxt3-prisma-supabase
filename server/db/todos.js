@@ -8,10 +8,10 @@ export const getAllTodos = async (auth_id) => {
 	});
 };
 
-export const updateTodo = async (id, data) => {
+export const updateTodo = async (data) => {
 	return await prisma.todos.update({
 		where: {
-			id,
+			id: data.id,
 		},
 		data,
 	});
