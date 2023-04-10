@@ -3,7 +3,7 @@
 // import { serverSupabaseUser } from "#supabase/server";
 
 export default defineEventHandler(async (event) => {
-	console.log("auth middleware");
+	// console.log("auth middleware");
 	// const user = await serverSupabaseUser(event);
 	// if (!user) {
 	// 	throw createError({

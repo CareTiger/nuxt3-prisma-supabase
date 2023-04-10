@@ -24,7 +24,6 @@ const props = defineProps({
 const emit = defineEmits(["update"]);
 
 function toggle() {
-	console.log("toggle", props.modelValue);
 	emit("update");
 }
 </script>
