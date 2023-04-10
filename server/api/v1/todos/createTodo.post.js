@@ -1,16 +1,8 @@
 import { sendError } from "h3";
 import { createTodo } from "~/server/db/todos";
-import { serverSupabaseUser } from "#supabase/server";
 
 export default defineEventHandler(async (event) => {
 	const payload = await readBody(event);
-
-	// server auth guard
-	// https://supabase.nuxtjs.org/usage/services/server-supabase-user
-	// const user = await serverSupabaseUser(event);
-	// if (!user) {
-	// 	return sendError("Unauthorized");
-	// }
 
 	try {
 		payload.updated_at = new Date();

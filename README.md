@@ -8,6 +8,8 @@
 -   fix messed up grants because of Prisma - https://supabase.com/docs/guides/integrations/prisma#missing-grants
 -   RLS - https://supabase.com/docs/guides/auth/row-level-security#advanced-policies
 -   prisma multiple schemas - https://www.prisma.io/docs/guides/other/multi-schema
+-   protecting server routes - https://masteringnuxt.com/blog/protecting-server-routes
+-   client side error handling - https://masteringnuxt.com/blog/nuxt-3-client-side-error-handling
 -   nuxt/image - https://v1.image.nuxtjs.org/
 
 ## Prisma naming convention
@@ -96,14 +98,12 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
 ## TODO
 
 -   Messages/chat
--   Todos
 -   pg_cron and pg_net
 -   Create indexes on table using Prisma (https://www.prisma.io/blog/improving-query-performance-using-indexes-2-MyoiJNMFTsfq#:~:text=You%20can%20add%20an%20index,index%20created%20in%20the%20database)
 -   full text search (https://www.prisma.io/docs/concepts/components/prisma-client/full-text-search)
--   Create a shadow db (not named "postgres") and access through pgAdmin. Text out all functionality - realtime, RLS, etc.
+-   Create a shadow db (not named "postgres" and access through pgAdmin) OR create a new schema. Text out all functionality - realtime, RLS, etc.
 -   Reset pwd - is not redirecting to the right page
 -   Log errors in error logging table
--   server auth guards (implemented in supabase-auth-cloudinary) - NEED TESTING
 -   implement gallery as api
 
 ## Tutorials & examples
