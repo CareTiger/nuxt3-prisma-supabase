@@ -2,11 +2,13 @@
 
 ## Project notes
 
--   nuxt/image - https://v1.image.nuxtjs.org/
+-   supabase JS docs - https://supabase.com/docs/reference/javascript/
 -   supabase/prisma - https://supabase.com/docs/guides/integrations/prisma
 -   realtime inspector - https://realtime.supabase.com/inspector
 -   fix messed up grants because of Prisma - https://supabase.com/docs/guides/integrations/prisma#missing-grants
 -   RLS - https://supabase.com/docs/guides/auth/row-level-security#advanced-policies
+-   prisma multiple schemas - https://www.prisma.io/docs/guides/other/multi-schema
+-   nuxt/image - https://v1.image.nuxtjs.org/
 
 ## Prisma naming convention
 
@@ -100,3 +102,19 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
 -   Create a shadow db (not named "postgres") and access through pgAdmin. Text out all functionality - realtime, RLS, etc.
 -   Reset pwd - is not redirecting to the right page
 -   Log errors in error logging table
+-   server auth guards (implemented in supabase-auth-cloudinary) - NEED TESTING
+-   implement gallery as api
+
+## Tutorials & examples
+
+supabase - https://github.com/supabase/supabase/tree/master/examples
+supabase edge-functions - https://github.com/supabase/supabase/tree/master/examples/edge-functions/supabase/functions
+
+CodewithGuillaume - edge functions - https://www.youtube.com/watch?v=wJtuF6A8uXk
+CodewithGuillaume - RLS - https://www.youtube.com/watch?v=eplN5oaQ_aA&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=3
+CodewithGuillaume - Realtime - https://www.youtube.com/watch?v=vUBYq-99TsE&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=10
+CodewithGuillaume - Realtime 2 - https://www.youtube.com/watch?v=A9hq5d7t-tA&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=18
+CodewithGuillaume - db functions - https://www.youtube.com/watch?v=n5j_mrSmpyc&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=12
+CodewithGuillaume - storage - https://www.youtube.com/watch?v=cN2RE6EpExE&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=15
+CodewithGuillaume - logs - https://www.youtube.com/watch?v=LgoWTIvaslQ&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=16
+CodewithGuillaume - extensions - https://www.youtube.com/watch?v=IciFWVvDopc&list=PL8HkCX2C5h0W-Fr3NEfOprzTRHICMGyOX&index=17
