@@ -9,32 +9,32 @@
 
 ## SQL for enabling realtime on table "notifications" (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
-begin;
--- remove the realtime publication
-drop publication if exists supabase_realtime;
--- re-create the publication but don't enable it for any tables
-create publication supabase_realtime;
-commit;
--- add a table to the publication
-alter publication supabase_realtime add table notifications;
+    begin;
+    -- remove the realtime publication
+    drop publication if exists supabase_realtime;
+    -- re-create the publication but don't enable it for any tables
+    create publication supabase_realtime;
+    commit;
+    -- add a table to the publication
+    alter publication supabase_realtime add table notifications;
 
 ## SQL for fixing the grants on a database (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
-grant usage on schema public to postgres, anon, authenticated, service_role;
+    grant usage on schema public to postgres, anon, authenticated, service_role;
 
-grant all privileges on all tables in schema public to postgres, anon, authenticated, service_role;
-grant all privileges on all functions in schema public to postgres, anon, authenticated, service_role;
-grant all privileges on all sequences in schema public to postgres, anon, authenticated, service_role;
+    grant all privileges on all tables in schema public to postgres, anon, authenticated, service_role;
+    grant all privileges on all functions in schema public to postgres, anon, authenticated, service_role;
+    grant all privileges on all sequences in schema public to postgres, anon, authenticated, service_role;
 
-alter default privileges in schema public grant all on tables to postgres, anon, authenticated, service_role;
-alter default privileges in schema public grant all on functions to postgres, anon, authenticated, service_role;
-alter default privileges in schema public grant all on sequences to postgres, anon, authenticated, service_role;
+    alter default privileges in schema public grant all on tables to postgres, anon, authenticated, service_role;
+    alter default privileges in schema public grant all on functions to postgres, anon, authenticated, service_role;
+    alter default privileges in schema public grant all on sequences to postgres, anon, authenticated, service_role;
 
 ## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
-CREATE POLICY user_notifications ON notifications
-FOR ALL
-USING (text(auth.uid()) = auth_id);
+    CREATE POLICY user_notifications ON notifications
+    FOR ALL
+    USING (text(auth.uid()) = auth_id);
 
 ## Connection pooling (PgBouncer)
 
