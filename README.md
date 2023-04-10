@@ -6,6 +6,7 @@
 -   supabase/prisma - https://supabase.com/docs/guides/integrations/prisma
 -   realtime inspector - https://realtime.supabase.com/inspector
 -   fix messed up grants because of Prisma - https://supabase.com/docs/guides/integrations/prisma#missing-grants
+-   RLS - https://supabase.com/docs/guides/auth/row-level-security#advanced-policies
 
 ## SQL for enabling realtime on table "notifications" (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
@@ -79,7 +80,6 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
 
 ## TODO
 
--   Enable RLS (https://supabase.com/docs/guides/auth/row-level-security#advanced-policies)
 -   Messages/chat
 -   Todos
 -   pg_cron and pg_net
