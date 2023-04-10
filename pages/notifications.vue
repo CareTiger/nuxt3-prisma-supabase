@@ -29,7 +29,7 @@ definePageMeta({
 onUnmounted(async () => {
 	console.log("unmounted");
 	const client = useSupabaseClient();
-	const data = await client.rpc("mark_notifications_as_read2", {
+	const data = await client.rpc("mark_notifications_as_read", {
 		user_id: userStore.profile.id,
 	});
 	console.log(data);

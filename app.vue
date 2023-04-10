@@ -11,7 +11,7 @@ const client = useSupabaseClient();
 let realtimeChannelNotifications = RealtimeChannel;
 
 onMounted(async () => {
-	// use 10 second polling to check changes
+	// use 10 second polling to check changes - BAD
 	// setInterval(() => {
 	//     usePolling();
 	// }, 10000);
@@ -22,10 +22,9 @@ onMounted(async () => {
 		.on(
 			"postgres_changes",
 			{
-				event: "*",
+				event: "INSERT",
 				schema: "public",
 				table: "notifications",
-				// filter: "id=eq." + String(user.value?.id),
 			},
 			() => useRefreshNotifications()
 		)
