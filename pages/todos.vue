@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Spinner v-if="isLoading" />
+		<Spinner v-if="siteStore.isLoading" />
 		<h1 class="text-center text-4xl">Todos</h1>
 		<div class="mt-8 grid place-items-center max-w-md mx-auto">
 			<div class="w-full">
@@ -24,11 +24,11 @@
 						<span
 							><UIToggle
 								:model-value="todo.completed"
-								@update="completedTodo(todo.id)"
+								@update="completedTodo(todo.id, modelValue)"
 							></UIToggle
 						></span>
 						<span
-							class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center ml-2"
+							class="w-8 h-8 bg-red-500 text-white font-extrabold rounded-full flex items-center justify-center ml-2"
 							@click="deleteTodo(todo.id)"
 							>X</span
 						>
@@ -40,8 +40,10 @@
 </template>
 <script setup>
 import { useUserStore } from "~/store/user";
+import { useSiteStore } from "~/store/site";
 const userStore = useUserStore();
-const isLoading = ref(false);
+const siteStore = useSiteStore();
+
 // check if RLS is enabled
 // const client = useSupabaseClient();
 // const { data: todos, error } = await client.from("todos").select("*");
@@ -50,8 +52,8 @@ const isLoading = ref(false);
 const todo = ref("");
 async function addTodo() {
 	setTimeout(() => {
-		isLoading.value = true;
-	}, 500);
+		siteStore.isLoading = true;
+	}, 200);
 	const { data, error } = await useFetch("/api/v1/todos/createTodo", {
 		method: "POST",
 		body: {
@@ -60,29 +62,28 @@ async function addTodo() {
 		},
 	});
 	const { data2, error2 } = await useGetUser();
-	isLoading.value = false;
 	todo.value = "";
 }
 
-async function completedTodo(id) {
+async function completedTodo(id, modelValue) {
+	console.log(id, modelValue);
 	setTimeout(() => {
-		isLoading.value = true;
-	}, 500);
+		siteStore.isLoading = true;
+	}, 200);
 	const { data, error } = await useFetch("/api/v1/todos/updateTodo", {
 		method: "PUT",
 		body: {
 			id,
-			completed: true,
+			completed: modelValue,
 		},
 	});
 	useGetUser();
-	isLoading.value = false;
 }
 
 async function deleteTodo(id) {
 	setTimeout(() => {
-		isLoading.value = true;
-	}, 500);
+		siteStore.isLoading = true;
+	}, 200);
 	const { data, error } = await useFetch("/api/v1/todos/deleteTodo", {
 		method: "DELETE",
 		body: {
@@ -90,6 +91,5 @@ async function deleteTodo(id) {
 		},
 	});
 	useGetUser();
-	isLoading.value = false;
 }
 </script>
