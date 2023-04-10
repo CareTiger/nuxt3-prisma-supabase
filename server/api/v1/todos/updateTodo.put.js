@@ -1,7 +1,10 @@
 import { sendError } from "h3";
 import { updateTodo } from "~/server/db/todos";
+import protectRoute from "~/server/protectRoute";
 
 export default defineEventHandler(async (event) => {
+	// protectRoute(event);
+
 	const payload = await readBody(event);
 
 	try {
