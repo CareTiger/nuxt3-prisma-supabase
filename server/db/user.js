@@ -29,7 +29,6 @@ export const getNotifications = async (auth_id) => {
 		orderBy: {
 			created_at: "desc",
 		},
-		take: 10,
 	});
 };
 

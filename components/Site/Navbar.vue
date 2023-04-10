@@ -29,9 +29,11 @@
 					<NuxtLink to="/gallery">Gallery</NuxtLink>
 				</li>
 				<li v-if="user">
+					<NuxtLink to="/todos">Todos</NuxtLink>
+				</li>
+				<li v-if="user">
 					<NuxtLink to="/notifications"
 						><span>Notifications </span>
-						<span></span>
 						<span
 							v-if="userStore.getNumberOfUnreadNotifications > 0"
 							>({{
