@@ -86,7 +86,7 @@ alter default privileges in schema public grant all on tables to postgres, anon,
 alter default privileges in schema public grant all on functions to postgres, anon, authenticated, service_role;
 alter default privileges in schema public grant all on sequences to postgres, anon, authenticated, service_role;
 
-## SQL for policies
+## SQL for RLS policies
 
 CREATE POLICY user_notifications ON notifications
 FOR ALL
@@ -103,12 +103,15 @@ When migrating, you need to use the non-pooled connection URL (like the one used
 DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1"
 SHADOW_DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres_shadow"
 
-## RPC Functions (IMPORTANT - remember to store them somewhere in case schema needs to be reset by Prisma OR BEST OPTION create them in SQL)
+## RPC Functions (IMPORTANT in case schema needs to be reset by Prisma the best option is to create them in SQL instead of using the Supabase functions UI)
 
-    - call the RPC function mark_notifications_as_read()
-    - CODE for the RPC function that receives an argument user_id
+    create or replace function mark_notifications_as_read(user_id text)
+    returns void
+    language plpgsql
+    as $$
     begin
     update public.notifications
     set read = true
     where auth_id = user_id and read = false;
     end
+    $$;
