@@ -19,6 +19,7 @@ model user {
     full_name      String?
     private        Boolean         @default(false)
     notifications  notifications[]
+    todos          todos[]
     created_at     DateTime        @default(now())
     updated_at     DateTime        @updatedAt
     role           role            @default(USER)
@@ -34,6 +35,16 @@ model notifications {
     type       String
     message    String
     read       Boolean  @default(false)
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+    user       user     @relation(fields: [auth_id], references: [auth_id])
+    auth_id    String
+}
+
+model todos {
+    id         Int      @id @default(autoincrement())
+    title      String
+    completed  Boolean  @default(false)
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
     user       user     @relation(fields: [auth_id], references: [auth_id])

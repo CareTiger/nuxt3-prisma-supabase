@@ -63,7 +63,7 @@ alter publication supabase_realtime add table products;
 -- add other tables to the publication
 alter publication supabase_realtime add table posts;
 
-## SQL for enabling realtime on a table
+## SQL for enabling realtime on a table (IMPORTANT - have to enable every time schema is recreated by Prisma)
 
 begin;
 -- remove the realtime publication
@@ -102,3 +102,13 @@ When migrating, you need to use the non-pooled connection URL (like the one used
 
 DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1"
 SHADOW_DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres_shadow"
+
+## RPC Functions (IMPORTANT - remember to store them somewhere in case schema needs to be reset by Prisma OR BEST OPTION create them in SQL)
+
+    - call the RPC function mark_notifications_as_read()
+    - CODE for the RPC function that receives an argument user_id
+    begin
+    update public.notifications
+    set read = true
+    where auth_id = user_id and read = false;
+    end
