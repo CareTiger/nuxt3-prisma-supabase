@@ -21,9 +21,11 @@ export default defineEventHandler(async (event) => {
 			created_at: new Date(),
 			updated_at: new Date(),
 		};
-		return await createUser(newUser).catch((error) => {
+		try {
+			const createdUser = await createUser(newUser);
+			return userTransformer(createdUser);
+		} catch (error) {
 			sendError(error);
-		});
+		}
 	}
-	// return;
 });

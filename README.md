@@ -32,7 +32,22 @@
 
 ## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
-    CREATE POLICY user_notifications ON notifications
+    -- enable RLS on all tables
+    alter table public.user
+    enable row level security;
+
+    alter table public.notifications
+    enable row level security;
+
+    alter table public.todos
+    enable row level security;
+
+    -- create policies on the tables
+    CREATE POLICY  "user can update their own notfications." ON notifications
+    FOR ALL
+    USING (text(auth.uid()) = auth_id);
+
+    CREATE POLICY  "user can update their own todos." ON todos
     FOR ALL
     USING (text(auth.uid()) = auth_id);
 
@@ -61,3 +76,13 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
     where auth_id = user_id and read = false;
     end
     $$;
+
+## TODO
+
+-   Enable RLS (https://supabase.com/docs/guides/auth/row-level-security#advanced-policies)
+-   Messages/chat
+-   Todos
+-   pg_cron and pg_net
+-   Create indexes on table using Prisma (https://www.prisma.io/blog/improving-query-performance-using-indexes-2-MyoiJNMFTsfq#:~:text=You%20can%20add%20an%20index,index%20created%20in%20the%20database)
+-   full text search (https://www.prisma.io/docs/concepts/components/prisma-client/full-text-search)
+-   Create a shadow db (not named "postgres") and access through pgAdmin. Text out all functionality - realtime, RLS, etc.
