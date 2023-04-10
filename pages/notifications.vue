@@ -22,6 +22,8 @@
 <script setup>
 import { useUserStore } from "~/store/user";
 const userStore = useUserStore();
+const client = useSupabaseClient();
+
 definePageMeta({
 	middleware: ["auth"],
 });
@@ -34,7 +36,7 @@ onUnmounted(async () => {
 	// set read = true
 	// where auth_id = user_id and read = false;
 	// end
-	const client = useSupabaseClient();
+
 	const data = await client.rpc("mark_notifications_as_read", {
 		user_id: userStore.profile.id,
 	});
