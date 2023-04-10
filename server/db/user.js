@@ -11,6 +11,11 @@ export const getUser = async (auth_id) => {
 					created_at: "desc",
 				},
 			},
+			todos: {
+				orderBy: {
+					created_at: "desc",
+				},
+			},
 		},
 	});
 };
