@@ -1,45 +1,4 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+# Nuxt 3 Prisma Supabase
 
 ## Project notes
 
@@ -48,22 +7,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 -   realtime inspector - https://realtime.supabase.com/inspector
 -   fix messed up grants because of Prisma - https://supabase.com/docs/guides/integrations/prisma#missing-grants
 
-## Enabling relatime on table
-
-To enable realtime for database tables, you can use the following code snippet:
-
-begin;
--- remove the realtime publication
-drop publication if exists supabase_realtime;
--- re-create the publication but don't enable it for any tables
-create publication supabase_realtime;
-commit;
--- add a table to the publication
-alter publication supabase_realtime add table products;
--- add other tables to the publication
-alter publication supabase_realtime add table posts;
-
-## SQL for enabling realtime on a table (IMPORTANT - have to enable every time schema is recreated by Prisma)
+## SQL for enabling realtime on table "notifications" (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
 begin;
 -- remove the realtime publication
@@ -74,7 +18,7 @@ commit;
 -- add a table to the publication
 alter publication supabase_realtime add table notifications;
 
-## SQL for fixing the grants on a database
+## SQL for fixing the grants on a database (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
 grant usage on schema public to postgres, anon, authenticated, service_role;
 
@@ -86,7 +30,7 @@ alter default privileges in schema public grant all on tables to postgres, anon,
 alter default privileges in schema public grant all on functions to postgres, anon, authenticated, service_role;
 alter default privileges in schema public grant all on sequences to postgres, anon, authenticated, service_role;
 
-## SQL for RLS policies
+## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
 CREATE POLICY user_notifications ON notifications
 FOR ALL
@@ -103,7 +47,9 @@ When migrating, you need to use the non-pooled connection URL (like the one used
 DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:6543/postgres?pgbouncer=true&connection_limit=1"
 SHADOW_DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres_shadow"
 
-## RPC Functions (IMPORTANT in case schema needs to be reset by Prisma the best option is to create them in SQL instead of using the Supabase functions UI)
+## RPC Functions (IMPORTANT - have to run this script every time schema is reset by Prisma)
+
+IMPORTANT in case schema needs to be reset by Prisma the best option is to create them in SQL instead of using the Supabase functions UI
 
     create or replace function mark_notifications_as_read(user_id text)
     returns void
