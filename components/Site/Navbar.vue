@@ -78,7 +78,7 @@
 			</div>
 		</SiteBaseModal>
 		<div class="flex items-center space-x-2">
-			<ul class="text-slate-500 dark:text-white text-sm">
+			<ul class="text-slate-500 dark:text-white text-sm hidden md:block">
 				<li v-if="user">
 					<NuxtLink to="" @click="logout">Logout</NuxtLink>
 				</li>
