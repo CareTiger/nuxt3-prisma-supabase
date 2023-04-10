@@ -1,6 +1,7 @@
 import { sendError } from "h3";
 import { getAllTodos } from "~/server/db/todos";
 import { serverSupabaseUser } from "#supabase/server";
+import { todoTransformer } from "~/server/transformer/todo";
 
 export default defineEventHandler(async (event) => {
 	const payload = getQuery(event);
@@ -13,7 +14,8 @@ export default defineEventHandler(async (event) => {
 	// }
 
 	try {
-		return await getAllTodos(payload.user_id);
+		const todos = await getAllTodos(payload.user_id);
+		return todos.map(todoTransformer);
 	} catch (error) {
 		return sendError(
 			event,

@@ -12,9 +12,10 @@
 
 ## Prisma naming convention
 
--   Use plural for all model names
--   use lower case for all model names
--   use user_id instead of auth_id
+-   Use singular/plural for all model names. be consistent.
+-   use lower case for all model names. postgres sometimes gets messed up with Capitalized model names.
+-   use user_id instead of auth_id in the public schema
+-
 
 ## SQL for enabling realtime on table "notifications" (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
@@ -42,8 +43,8 @@
 ### How to check if your grants are messed up
 
     const client = useSupabaseClient();
-    const todos = await client.from("todos").select("*");
-    console.log(todos.status);
+    const { data: todos, error } = await client.from("todos").select("*");
+    console.log(todos);
 
 ## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
