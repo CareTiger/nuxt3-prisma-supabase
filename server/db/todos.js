@@ -1,9 +1,9 @@
 import { prisma } from ".";
 
-export const getAllTodos = async (auth_id) => {
+export const getAllTodos = async (user_id) => {
 	return await prisma.todos.findMany({
 		where: {
-			auth_id,
+			user_id,
 		},
 	});
 };

@@ -1,9 +1,9 @@
 import { prisma } from ".";
 
-export const getUser = async (auth_id) => {
+export const getUser = async (user_id) => {
 	return await prisma.user.findUnique({
 		where: {
-			auth_id,
+			user_id,
 		},
 		include: {
 			notifications: {
@@ -26,10 +26,10 @@ export const createUser = async (user) => {
 	});
 };
 
-export const getNotifications = async (auth_id) => {
+export const getNotifications = async (user_id) => {
 	return await prisma.notifications.findMany({
 		where: {
-			auth_id,
+			user_id,
 		},
 		orderBy: {
 			created_at: "desc",
@@ -37,10 +37,10 @@ export const getNotifications = async (auth_id) => {
 	});
 };
 
-export const getUserRole = async (auth_id) => {
+export const getUserRole = async (user_id) => {
 	return await prisma.user.findUnique({
 		where: {
-			auth_id,
+			user_id,
 		},
 		select: {
 			role: true,

@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
 	let notifications = [];
 
 	try {
-		notifications = await getNotifications(payload.auth_id);
+		notifications = await getNotifications(payload.user_id);
 		return notifications.map((notification) =>
 			notificationTransformer(notification)
 		);

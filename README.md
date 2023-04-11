@@ -63,11 +63,11 @@
     -- create policies on the tables
     CREATE POLICY  "user can update their own notfications." ON notifications
     FOR ALL
-    USING (text(auth.uid()) = auth_id);
+    USING (text(auth.uid()) = user_id);
 
     CREATE POLICY  "user can update their own todos." ON todos
     FOR ALL
-    USING (text(auth.uid()) = auth_id);
+    USING (text(auth.uid()) = user_id);
 
 ## Connection pooling (PgBouncer)
 
@@ -88,11 +88,11 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
     returns void
     language plpgsql
     as $$
-    begin
-    update public.notifications
-    set read = true
-    where auth_id = user_id and read = false;
-    end
+        begin
+        update public.notifications
+        set read = true
+        where notifications.user_id = user_id and read = false;
+        end
     $$;
 
 ## TODO
