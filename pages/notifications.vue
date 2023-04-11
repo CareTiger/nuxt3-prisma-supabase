@@ -1,10 +1,9 @@
 <template>
 	<div>
 		<h1 class="text-center text-4xl">Notifications</h1>
-		<ul
-			class="grid place-items-center max-w-md mx-auto border border-red-500"
-		>
+		<ul class="grid place-items-center max-w-md mx-auto mt-8">
 			<li
+				class="w-full"
 				v-for="notification in userStore.profile.notifications"
 				:key="notification.id"
 			>
@@ -12,7 +11,7 @@
 					:class="[
 						notification.read ? `bg-slate-800` : `bg-slate-600`,
 					]"
-					class="flex flex-row justify-between p-4 mb-2"
+					class="flex flex-row justify-between p-4 mb-2 w-full"
 				>
 					{{ notification.message }}
 				</p>

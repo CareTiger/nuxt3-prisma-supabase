@@ -27,11 +27,14 @@ onMounted(async () => {
 				event: "*",
 				schema: "public",
 				table: "notifications",
-				filter: "user_id=eq." + user.value.id,
+				// DON"T NEED THIS FILTER BECAUSE RLS IS SET UP
+				// filter: "user_id=eq." + user.value.id,
 			},
 			() => useRefreshNotifications()
 		)
 		.subscribe();
+
+	// console.log(client.getChannels());
 });
 
 onUnmounted(() => {
