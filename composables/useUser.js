@@ -24,7 +24,7 @@ export const useGetUser = () => {
 };
 
 export const useRefreshNotifications = async () => {
-	console.log("useRefreshNotifications");
+	console.log("Realtime Refresh Notifications");
 	const userStore = useUserStore();
 	return new Promise(async (resolve, reject) => {
 		try {

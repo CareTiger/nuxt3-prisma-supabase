@@ -60,7 +60,7 @@ async function addTodo() {
 	const { data, error } = await useFetch("/api/v1/todos/createTodo", {
 		method: "POST",
 		body: {
-			auth_id: userStore.profile.id,
+			user_id: userStore.profile.id,
 			title: todo.value,
 		},
 	});
