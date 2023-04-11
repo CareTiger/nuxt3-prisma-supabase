@@ -33,7 +33,7 @@ export const useRefreshNotifications = async () => {
 				{
 					method: "GET",
 					query: {
-						auth_id: userStore.profile.id,
+						user_id: userStore.profile.id,
 					},
 				}
 			);
@@ -52,7 +52,7 @@ export const useGetUserRole = () => {
 			const { data } = await useFetch("/api/v1/user/getRole", {
 				method: "GET",
 				query: {
-					auth_id: user.value.id,
+					user_id: user.value.id,
 				},
 			});
 			resolve(toRaw(data.value));

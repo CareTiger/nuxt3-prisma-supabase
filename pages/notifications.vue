@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<h1 class="text-center text-4xl">Notifications</h1>
-		<ul>
+		<ul
+			class="grid place-items-center max-w-md mx-auto border border-red-500"
+		>
 			<li
 				v-for="notification in userStore.profile.notifications"
 				:key="notification.id"
@@ -12,8 +14,7 @@
 					]"
 					class="flex flex-row justify-between p-4 mb-2"
 				>
-					<span>{{ notification.message }}</span>
-					<span>{{ notification.created_at }}</span>
+					{{ notification.message }}
 				</p>
 			</li>
 		</ul>
