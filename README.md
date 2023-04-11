@@ -1,5 +1,18 @@
 # Nuxt 3 Prisma Supabase
 
+## TODO
+
+-   Messages/chat/prescence/boradcast(https://supabase.com/docs/guides/realtime/extensions/broadcast)
+-   Media API
+-   pg_cron and pg_net
+-   Create indexes on table using Prisma (https://www.prisma.io/blog/improving-query-performance-using-indexes-2-MyoiJNMFTsfq#:~:text=You%20can%20add%20an%20index,index%20created%20in%20the%20database)
+-   full text search (https://www.prisma.io/docs/concepts/components/prisma-client/full-text-search)
+-   Create a shadow db (not named "postgres" and access through pgAdmin) OR create a new schema. Text out all functionality - realtime, RLS, etc.
+-   Reset pwd - is not redirecting to the right page
+-   Log errors in error logging table
+-   implement gallery as api
+-
+
 ## Project notes
 
 -   supabase JS docs - https://supabase.com/docs/reference/javascript/
@@ -102,17 +115,7 @@ IMPORTANT in case schema needs to be reset by Prisma the best option is to creat
         end
     $$;
 
-## TODO
-
--   Messages/chat
--   Media API
--   pg_cron and pg_net
--   Create indexes on table using Prisma (https://www.prisma.io/blog/improving-query-performance-using-indexes-2-MyoiJNMFTsfq#:~:text=You%20can%20add%20an%20index,index%20created%20in%20the%20database)
--   full text search (https://www.prisma.io/docs/concepts/components/prisma-client/full-text-search)
--   Create a shadow db (not named "postgres" and access through pgAdmin) OR create a new schema. Text out all functionality - realtime, RLS, etc.
--   Reset pwd - is not redirecting to the right page
--   Log errors in error logging table
--   implement gallery as api
+## edge functions
 
 ## Tutorials & examples
 
