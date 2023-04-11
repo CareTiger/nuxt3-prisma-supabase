@@ -60,12 +60,19 @@
     alter table public.todos
     enable row level security;
 
+    alter table public.media
+    enable row level security;
+
     -- create policies on the tables
     CREATE POLICY  "user can update their own notfications." ON notifications
     FOR ALL
     USING (text(auth.uid()) = user_id);
 
     CREATE POLICY  "user can update their own todos." ON todos
+    FOR ALL
+    USING (text(auth.uid()) = user_id);
+
+    CREATE POLICY  "user can update their own media." ON media
     FOR ALL
     USING (text(auth.uid()) = user_id);
 
