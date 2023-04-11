@@ -108,9 +108,9 @@ const client = useSupabaseAuthClient();
 const provider = async (providerName) => {
 	const { data, error } = await client.auth.signInWithOAuth({
 		provider: providerName,
-		// options: {
-		// 	redirectTo: "http://localhost:3000/dashboard",
-		// },
+		options: {
+			redirectTo: "https://nuxt3-prisma-supabase.vercel.app/dashboard",
+		},
 	});
 
 	if (error) {
