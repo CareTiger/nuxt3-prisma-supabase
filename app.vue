@@ -32,7 +32,7 @@ onMounted(async () => {
 			},
 			() => useRefreshNotifications()
 		)
-		.subscribe();
+		.subscribe((status) => console.log(status));
 
 	// console.log(client.getChannels());
 });
