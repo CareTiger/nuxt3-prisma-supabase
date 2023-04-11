@@ -27,7 +27,7 @@ onMounted(async () => {
 				event: "*",
 				schema: "public",
 				table: "notifications",
-				filter: "auth_id=eq." + user.value.id,
+				filter: "user_id=eq." + user.value.id,
 			},
 			() => useRefreshNotifications()
 		)
