@@ -15,6 +15,13 @@
 
 ## Project notes
 
+-   Coding Better composables
+-   -   https://www.vuemastery.com/blog/coding-better-composables-1-of-5/
+-   -   https://www.vuemastery.com/blog/coding-better-composables-2-of-5/
+-   -   https://www.vuemastery.com/blog/coding-better-composables-3-of-5/
+-   -   https://www.vuemastery.com/blog/coding-better-composables-4-of-5/
+-   -   https://www.vuemastery.com/blog/coding-better-composables-5-of-5/
+-   -   https://www.vuemastery.com/courses/coding-better-composables/what-is-a-composable/?utm_source=newsletter&utm_medium=email&utm_campaign=free_tutorials_unlocked_for_you&utm_term=2023-04-12
 -   supabase JS docs - https://supabase.com/docs/reference/javascript/
 -   supabase/prisma - https://supabase.com/docs/guides/integrations/prisma
 -   realtime inspector - https://realtime.supabase.com/inspector
