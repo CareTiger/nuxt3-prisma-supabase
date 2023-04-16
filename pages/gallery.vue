@@ -43,7 +43,7 @@
 				>
 					<img
 						class="w-full h-96 object-cover rounded-2xl"
-						:src="`${runtimeConfig.SUPABASE_STORAGE_BASE_URL}/sampyl/users/${user.id}/${image.name}`"
+						:src="`${runtimeConfig.public.SUPABASE_STORAGE_BASE_URL}/sampyl/users/${user.id}/${image.name}`"
 						alt="your image"
 					/>
 				</li>
@@ -90,6 +90,8 @@ async function submitForm() {
 }
 
 async function getImages() {
+	console.log(user.value.id);
+	console.log("getImages");
 	try {
 		const { data, error } = await client.storage
 			.from("sampyl")
@@ -99,6 +101,7 @@ async function getImages() {
 				sortBy: { column: "name", order: "asc" },
 			});
 		imageGallery.value = data;
+		console.log(data);
 	} catch (error) {
 		console.log(error);
 	}

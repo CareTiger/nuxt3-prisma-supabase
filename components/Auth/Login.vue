@@ -140,10 +140,8 @@ const login = async () => {
 			errorMessage.value = error.message;
 		} else {
 			// hack for demo
-			// setTimeout(() => {
-			//     isLoading.value = false;
-			//     router.push("/dashboard");
-			// }, 1000);
+			isLoading.value = false;
+			navigateTo("/dashboard");
 		}
 	} catch (error) {
 		isLoading.value = false;
