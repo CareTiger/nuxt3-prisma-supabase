@@ -91,4 +91,10 @@ async function deleteTodo(id) {
 	useGetUser();
 	if (siteStore.isLoading) siteStore.toggleLoading();
 }
+
+watchEffect(() => {
+	if (!user.value) {
+		navigateTo("/auth/login");
+	}
+});
 </script>
