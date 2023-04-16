@@ -46,6 +46,7 @@ import { useUserStore } from "~/store/user";
 import { useSiteStore } from "~/store/site";
 const userStore = useUserStore();
 const siteStore = useSiteStore();
+const user = useSupabaseUser();
 
 // check if RLS is enabled
 // const client = useSupabaseClient();

@@ -90,8 +90,6 @@ async function submitForm() {
 }
 
 async function getImages() {
-	console.log(user.value.id);
-	console.log("getImages");
 	try {
 		const { data, error } = await client.storage
 			.from("sampyl")

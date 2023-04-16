@@ -1,9 +1,10 @@
 import { prisma } from ".";
-interface IUser {
+type UserId = string;
+type User = {
 	user_id: string;
 	email: string;
-}
-export const getUser = async (user_id: string) => {
+};
+export const getUser = async (user_id: UserId) => {
 	return await prisma.user.findUnique({
 		where: {
 			user_id,
@@ -23,13 +24,13 @@ export const getUser = async (user_id: string) => {
 	});
 };
 
-export const createUser = async (user: IUser) => {
+export const createUser = async (user: User) => {
 	return await prisma.user.create({
 		data: user,
 	});
 };
 
-export const getNotifications = async (user_id: string) => {
+export const getNotifications = async (user_id: UserId) => {
 	return await prisma.notifications.findMany({
 		where: {
 			user_id,
@@ -40,7 +41,7 @@ export const getNotifications = async (user_id: string) => {
 	});
 };
 
-export const getUserRole = async (user_id: string) => {
+export const getUserRole = async (user_id: UserId) => {
 	return await prisma.user.findUnique({
 		where: {
 			user_id,
