@@ -134,11 +134,12 @@ const login = async () => {
 			email: myEmail.value,
 			password: myPassword.value,
 		});
-
+		console.log(data, error);
 		if (error) {
 			isError.value = true;
 			errorMessage.value = error.message;
 		} else {
+			useGetUser();
 			setTimeout(() => {
 				isLoading.value = false;
 				navigateTo("/dashboard");

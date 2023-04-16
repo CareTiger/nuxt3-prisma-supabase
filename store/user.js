@@ -15,8 +15,8 @@ export const useUserStore = defineStore({
 	},
 	getters: {
 		getNumberOfUnreadNotifications() {
-			if (!this.profile.notifications) return 0;
-			return this.profile.notifications.filter(
+			if (!this.profile?.notifications) return 0;
+			return this.profile?.notifications.filter(
 				(notification) => !notification.read
 			).length;
 		},

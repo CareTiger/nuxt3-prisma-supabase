@@ -1,20 +1,20 @@
 import { useUserStore } from "~/store/user";
-import { useSiteStore } from "~/store/site";
 
 export const useGetUser = () => {
 	const user = useSupabaseUser();
 	const userStore = useUserStore();
 
+	console.log("Getting User profile", user.value);
 	return new Promise(async (resolve, reject) => {
 		try {
 			const { data } = await useFetch("/api/v1/user/getUser", {
 				method: "GET",
 				query: {
-					user: toRaw(user.value),
+					user: user.value,
 				},
 			});
-			userStore.setProfile(toRaw(data.value));
-			resolve(toRaw(data.value));
+			userStore.setProfile(data.value);
+			resolve(data.value);
 		} catch (error) {
 			reject(error);
 		}
@@ -35,8 +35,8 @@ export const useRefreshNotifications = async () => {
 					},
 				}
 			);
-			userStore.setNotifications(toRaw(data.value));
-			resolve(toRaw(data.value));
+			userStore.setNotifications(data.value);
+			resolve(data.value);
 		} catch (error) {
 			reject(error);
 		}
@@ -53,7 +53,7 @@ export const useGetUserRole = () => {
 					user_id: user.value.id,
 				},
 			});
-			resolve(toRaw(data.value));
+			resolve(data.value);
 		} catch (error) {
 			reject(error);
 		}
