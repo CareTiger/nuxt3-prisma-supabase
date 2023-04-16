@@ -70,27 +70,31 @@
 
 ## SQL for RLS policies (IMPORTANT - have to run this script every time schema is reset by Prisma)
 
-    -- enable RLS on all tables
+    -- enable RLS on all tables + create policies on the tables
+
+    -- table public.user
     alter table public.user
     enable row level security;
 
+    -- table public.notifications
     alter table public.notifications
     enable row level security;
 
-    alter table public.todos
-    enable row level security;
-
-    alter table public.media
-    enable row level security;
-
-    -- create policies on the tables
     CREATE POLICY  "user can update their own notfications." ON notifications
     FOR ALL
     USING (text(auth.uid()) = user_id);
 
+    -- table public.todos
+    alter table public.todos
+    enable row level security;
+
     CREATE POLICY  "user can update their own todos." ON todos
     FOR ALL
     USING (text(auth.uid()) = user_id);
+
+    -- table public.media
+    alter table public.media
+    enable row level security;
 
     CREATE POLICY  "user can update their own media." ON media
     FOR ALL
