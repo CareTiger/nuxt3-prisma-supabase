@@ -1,6 +1,9 @@
 import { prisma } from ".";
-
-export const getUser = async (user_id) => {
+interface IUser {
+	user_id: string;
+	email: string;
+}
+export const getUser = async (user_id: string) => {
 	return await prisma.user.findUnique({
 		where: {
 			user_id,
@@ -20,13 +23,13 @@ export const getUser = async (user_id) => {
 	});
 };
 
-export const createUser = async (user) => {
+export const createUser = async (user: IUser) => {
 	return await prisma.user.create({
 		data: user,
 	});
 };
 
-export const getNotifications = async (user_id) => {
+export const getNotifications = async (user_id: string) => {
 	return await prisma.notifications.findMany({
 		where: {
 			user_id,
@@ -37,7 +40,7 @@ export const getNotifications = async (user_id) => {
 	});
 };
 
-export const getUserRole = async (user_id) => {
+export const getUserRole = async (user_id: string) => {
 	return await prisma.user.findUnique({
 		where: {
 			user_id,
