@@ -45,7 +45,7 @@ watchEffect(() => {
 	if (user.value) {
 		useGetUser();
 	} else {
-		console.log("No user");
+		console.log("app.vue No user");
 	}
 });
 </script>
