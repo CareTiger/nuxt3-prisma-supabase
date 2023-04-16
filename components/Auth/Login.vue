@@ -139,9 +139,8 @@ const login = async () => {
 			isError.value = true;
 			errorMessage.value = error.message;
 		} else {
-			// hack for demo
-			isLoading.value = false;
 			setTimeout(() => {
+				isLoading.value = false;
 				navigateTo("/dashboard");
 			}, 1000);
 		}
