@@ -111,5 +111,6 @@ const toggleModal = () => {
 function logout() {
 	console.log("logout");
 	client.auth.signOut();
+	window.location.reload();
 }
 </script>

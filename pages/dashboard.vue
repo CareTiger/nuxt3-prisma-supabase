@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full">
 		<h1 class="text-center text-4xl">Dashboard</h1>
-		<Spinner v-if="!userStore.profile.id"></Spinner>
+		<!-- <Spinner v-if="!userStore.profile.id"></Spinner> -->
 		<div class="mt-10 grid place-items-center">
 			<img
 				class="w-96 h-96 rounded-2xl"
