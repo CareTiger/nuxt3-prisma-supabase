@@ -5,7 +5,7 @@
 		<div class="mt-10 grid place-items-center">
 			<img
 				class="w-96 h-96 rounded-2xl"
-				:src="userStore.profile.avatar_url"
+				:src="userStore.profile?.avatar_url"
 				alt="avatar"
 			/>
 			<p class="mt-4">id - {{ userStore.profile.id }}</p>

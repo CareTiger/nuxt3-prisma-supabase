@@ -5,12 +5,12 @@ export const userTransformer = (user) => {
 	return {
 		id: user.user_id,
 		email: user.email,
-		username: user.username,
-		avatar_url: user.avatar_url,
-		notifications: user.notifications.map((notification) => {
+		username: user?.username || "",
+		avatar_url: user?.avatar_url || "",
+		notifications: user?.notifications.map((notification) => {
 			return notificationTransformer(notification);
 		}),
-		todos: user.todos.map((todo) => {
+		todos: user?.todos.map((todo) => {
 			return todoTransformer(todo);
 		}),
 	};

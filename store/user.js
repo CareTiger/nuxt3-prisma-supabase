@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore({
 	id: "user-store",
 	state: () => ({
-		profile: {},
+		profile: null,
 	}),
 	actions: {
 		setProfile(profile) {
@@ -11,6 +11,9 @@ export const useUserStore = defineStore({
 		},
 		setNotifications(notifications) {
 			this.profile.notifications = notifications;
+		},
+		resetStore() {
+			this.profile = null;
 		},
 	},
 	getters: {

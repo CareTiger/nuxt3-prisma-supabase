@@ -111,6 +111,7 @@ const toggleModal = () => {
 function logout() {
 	console.log("logout");
 	client.auth.signOut();
+	userStore.resetStore();
 	window.location.reload();
 }
 </script>

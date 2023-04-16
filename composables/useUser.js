@@ -4,13 +4,16 @@ export const useGetUser = () => {
 	const user = useSupabaseUser();
 	const userStore = useUserStore();
 
-	console.log("Getting User profile", user.value);
+	const userData = {
+		id: user.value.id,
+		email: user.value.email,
+	};
 	return new Promise(async (resolve, reject) => {
 		try {
-			const { data } = await useFetch("/api/v1/user/getUser", {
+			const { data, error } = await useFetch("/api/v1/user/getUser", {
 				method: "GET",
 				query: {
-					user: user.value,
+					userData,
 				},
 			});
 			userStore.setProfile(data.value);

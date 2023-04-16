@@ -5,7 +5,7 @@ import { userTransformer } from "~/server/transformer/user";
 
 export default defineEventHandler(async (event) => {
 	const payload = await getQuery(event);
-	const user = JSON.parse(payload.user);
+	const user = JSON.parse(payload.userData);
 
 	// check if user exists in app db and return user else create new user
 	const userExists = await getUser(user.id);
