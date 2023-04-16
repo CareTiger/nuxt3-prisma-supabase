@@ -141,7 +141,9 @@ const login = async () => {
 		} else {
 			// hack for demo
 			isLoading.value = false;
-			navigateTo("/dashboard");
+			setTimeout(() => {
+				navigateTo("/dashboard");
+			}, 1000);
 		}
 	} catch (error) {
 		isLoading.value = false;
