@@ -44,7 +44,7 @@
     alter table public.todos
     enable row level security;
 
-    CREATE POLICY  "user can select/insert/update/delete their own todos." ON todos
+    CREATE POLICY  "user can select/insert/update/delete their own todos ONLY." ON todos
     FOR ALL
     USING (text(auth.uid()) = user_id);
 
@@ -71,12 +71,20 @@
     $$;
 
 --
--- STORAGE POLICIES
+-- STORAGE SEED AND POLICIES
 --
--- 1. Allow public access to any files in the "public" bucket
+
+-- create storage bucket and folders
+insert into storage.buckets
+  (id, name)
+values
+  ('sampyl', 'sampyl');
+
+-- create policies for the newly created buckets
+-- 1. Allow public access to any files in the "sampyl" bucket
 create policy "Public Access"
 on storage.objects for select
-using ( bucket_id = 'public' );
+using ( bucket_id = 'sampyl' );
 
 -- 1. Allow a user full access their own files
 create policy "Individual user insert"
