@@ -54,9 +54,7 @@ const siteStore = useSiteStore();
 
 const todo = ref("");
 async function addTodo() {
-	setTimeout(() => {
-		siteStore.isLoading = true;
-	}, 200);
+	siteStore.isLoading = true;
 	const { data, error } = await useFetch("/api/v1/todos/createTodo", {
 		method: "POST",
 		body: {
@@ -64,14 +62,13 @@ async function addTodo() {
 			title: todo.value,
 		},
 	});
-	const { data2, error2 } = await useGetUser();
+	useGetUser();
+	if (siteStore.isLoading) siteStore.toggleLoading();
 	todo.value = "";
 }
 
 async function completedTodo(id, modelValue) {
-	setTimeout(() => {
-		siteStore.isLoading = true;
-	}, 200);
+	siteStore.isLoading = true;
 	const { data, error } = await useFetch("/api/v1/todos/updateTodo", {
 		method: "PUT",
 		body: {
@@ -80,12 +77,11 @@ async function completedTodo(id, modelValue) {
 		},
 	});
 	useGetUser();
+	if (siteStore.isLoading) siteStore.toggleLoading();
 }
 
 async function deleteTodo(id) {
-	setTimeout(() => {
-		siteStore.isLoading = true;
-	}, 200);
+	siteStore.isLoading = true;
 	const { data, error } = await useFetch("/api/v1/todos/deleteTodo", {
 		method: "DELETE",
 		body: {
@@ -93,5 +89,6 @@ async function deleteTodo(id) {
 		},
 	});
 	useGetUser();
+	if (siteStore.isLoading) siteStore.toggleLoading();
 }
 </script>

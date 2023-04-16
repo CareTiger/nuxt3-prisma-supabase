@@ -4,7 +4,6 @@ import { useSiteStore } from "~/store/site";
 export const useGetUser = () => {
 	const user = useSupabaseUser();
 	const userStore = useUserStore();
-	const siteStore = useSiteStore();
 
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -15,7 +14,6 @@ export const useGetUser = () => {
 				},
 			});
 			userStore.setProfile(toRaw(data.value));
-			if (siteStore.isLoading) siteStore.toggleLoading();
 			resolve(toRaw(data.value));
 		} catch (error) {
 			reject(error);
