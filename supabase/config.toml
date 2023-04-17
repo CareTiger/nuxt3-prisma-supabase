@@ -77,6 +77,6 @@ port = 54327
 vector_port = 54328
 # Setup BigQuery project to enable log viewer on local development stack.
 # See: https://logflare.app/guides/bigquery-setup
-gcp_project_id = ""
-gcp_project_number = ""
+gcp_project_id = "project-id-6825824639293555267"
+gcp_project_number = "992504582220"
 gcp_jwt_path = "supabase/gcloud.json"
