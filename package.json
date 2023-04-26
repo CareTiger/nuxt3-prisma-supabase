@@ -1,24 +1,58 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.3",
-    "nuxt": "^3.4.2",
-    "prettier-plugin-prisma": "^4.12.0",
-    "prisma": "^4.13.0"
-  },
-  "dependencies": {
-    "@nuxtjs/supabase": "^0.3.5",
-    "@nuxtjs/tailwindcss": "^6.6.6",
-    "@pinia/nuxt": "^0.4.9",
-    "@prisma/client": "^4.13.0",
-    "@supabase/supabase-js": "^2.21.0"
-  }
+	"name": "nuxt-app",
+	"private": true,
+	"prisma": {
+		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+	},
+	"scriptsComments": {
+		"SUPABASE COMMENTS": "*** START/STOP/GENERATE_TYPES ***",
+		"sb:restart": "reboots the supabase docker container",
+		"sb:start": "starts the supabase docker container",
+		"sb:stop": "stops the supabase docker container and creates a backup",
+		"sb:types": "creates data types for the supabase client",
+		"sb:serve": "serves edge functions locally using .env.local",
+		"PRISMA COMMENTS": "*** META SCRIPTS ***",
+		"reset": "Resets the database and runs the prisma meta scripts",
+		"prisma": "meta script that Runs the privileges, rls, and functions/triggers scripts",
+		"prisma:realtime": "enables realtime on the notification table",
+		"prisma:storage": "Creates a storage bucket and adds a policies to the bucket"
+	},
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare && prisma generate",
+		"sb:stop": "npx env-cmd npx supabase stop --backup",
+		"sb:start": "npx env-cmd npx supabase start",
+		"sb:restart": "npm run sb:stop && npm run sb:start",
+		"sb:types": "npx supabase gen types typescript --local tb > ./types/db_types.ts",
+		"sb:serve": "supabase functions serve --env-file ./supabase/.env.local",
+		"prisma:reset": " npx prisma db push && npm run prisma && npx prisma db seed",
+		"prisma": "npm run prisma:privileges && npm run prisma:rls && npm run prisma:triggers",
+		"prisma:privileges": "npx prisma db execute --file ./prisma/sql/privileges.sql --schema ./prisma/schema.prisma",
+		"prisma:rls": "npx prisma db execute --file ./prisma/sql/rls.sql --schema ./prisma/schema.prisma",
+		"prisma:triggers": "npx prisma db execute --file ./prisma/sql/triggers.sql --schema ./prisma/schema.prisma",
+		"prisma:storage": "npx prisma db execute --file ./prisma/sql/storage.sql --schema ./prisma/schema.prisma",
+		"prisma:realtime": "npx prisma db execute --file ./prisma/sql/realtime.sql --schema ./prisma/schema.prisma",
+		"prisma:studio": "npx prisma studio --schema ./prisma/schema.prisma",
+		"test": "vitest",
+		"coverage": "vitest run --coverage"
+	},
+	"devDependencies": {
+		"@tailwindcss/forms": "^0.5.3",
+		"env-cmd": "^10.1.0",
+		"nuxt": "^3.4.2",
+		"prettier-plugin-prisma": "^4.12.0",
+		"prisma": "^4.13.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.4"
+	},
+	"dependencies": {
+		"@nuxtjs/supabase": "^0.3.5",
+		"@nuxtjs/tailwindcss": "^6.6.6",
+		"@pinia/nuxt": "^0.4.9",
+		"@prisma/client": "^4.13.0",
+		"@supabase/supabase-js": "^2.21.0"
+	}
 }

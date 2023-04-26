@@ -1,62 +1,78 @@
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["fullTextSearch"]
+    previewFeatures = ["fullTextSearch", "multiSchema"]
 }
 
 datasource db {
     provider  = "postgresql"
     url       = env("DATABASE_URL")
     directUrl = env("DIRECT_URL")
+    schemas   = ["public", "realtime"]
 }
 
-model user {
-    id             Int             @id @default(autoincrement())
-    user_id        String          @unique
-    email          String          @unique
-    username       String?         @unique
+model User {
+    id             Int            @id @default(autoincrement())
+    user_id        String         @unique
+    email          String         @unique
+    username       String?        @unique
     avatar_url     String?
     background_url String?
     full_name      String?
-    private        Boolean         @default(false)
-    notifications  notifications[]
-    todos          todos[]
-    media          media[]
-    created_at     DateTime        @default(now())
-    updated_at     DateTime        @updatedAt
-    role           role            @default(USER)
+    private        Boolean        @default(false)
+    notifications  Notification[]
+    todos          Todo[]
+    media          Media[]
+    created_at     DateTime       @default(now())
+    updated_at     DateTime       @updatedAt
+    role           Role           @default(USER)
+
+    @@map("user")
+    @@schema("realtime")
 }
 
-enum role {
+enum Role {
     USER
     ADMIN
+
+    @@map("role")
+    @@schema("realtime")
 }
 
-model notifications {
+model Notification {
     id         Int      @id @default(autoincrement())
     type       String
     message    String
     read       Boolean  @default(false)
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
-    user       user     @relation(fields: [user_id], references: [user_id])
+    user       User     @relation(fields: [user_id], references: [user_id])
     user_id    String
+
+    @@map("notification")
+    @@schema("realtime")
 }
 
-model todos {
+model Todo {
     id         Int      @id @default(autoincrement())
     title      String
     completed  Boolean  @default(false)
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
-    user       user     @relation(fields: [user_id], references: [user_id])
+    user       User     @relation(fields: [user_id], references: [user_id])
     user_id    String
+
+    @@map("todo")
+    @@schema("realtime")
 }
 
-model media {
+model Media {
     id         Int      @id @default(autoincrement())
     url        String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
-    user       user     @relation(fields: [user_id], references: [user_id])
+    user       User     @relation(fields: [user_id], references: [user_id])
     user_id    String
+
+    @@map("media")
+    @@schema("realtime")
 }
